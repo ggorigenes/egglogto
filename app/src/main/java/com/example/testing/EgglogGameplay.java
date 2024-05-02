@@ -16,6 +16,8 @@ public class EgglogGameplay extends AppCompatActivity {
     ImageButton btnTest;
     private boolean isResume;
 
+    //sadsdasdsad
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
