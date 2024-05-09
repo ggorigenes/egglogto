@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GameTesting"
-    android:background="@drawable/bg">
+    android:background="@drawable/bg1">
 
     <ImageView
         android:id="@+id/egg"
@@ -37,6 +37,42 @@
         app:srcCompat="@drawable/basket"
         android:adjustViewBounds="true"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignBottom="@id/eggsContainer"
         android:scaleType="centerCrop" />
+
+    <RelativeLayout
+        android:id="@+id/lifeContainer"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignBottom="@id/basket">
+
+        <ImageView
+            android:id="@+id/life1"
+            android:layout_width="50dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/life" />
+        <ImageView
+            android:id="@+id/life2"
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/life"  />/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:text="Highest Score: "
+        android:textSize="18dp"
+        android:layout_width="150dp"
+        android:layout_height="30dp"  />
+
+    <TextView
+        android:text="Score: 0"
+        android:id="@+id/score"
+        android:textSize="18dp"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_alignRight="@id/eggsContainer"/>
+
 
 </RelativeLayout>

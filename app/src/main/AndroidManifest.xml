@@ -22,6 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".GameTesting" />
+        <activity android:name=".GameOver" />
     </application>
 
 </manifest>
