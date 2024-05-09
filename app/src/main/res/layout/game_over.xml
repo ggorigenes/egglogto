@@ -11,22 +11,24 @@
 
     <ImageView
         android:id="@+id/gameover"
-        app:srcCompat="@drawable/gameover"
-        android:layout_width="500dp"
-        android:layout_height="300dp" />
+        android:layout_width="match_parent"
+        android:layout_height="410dp"
+        app:srcCompat="@drawable/gameover" />
 
     <ImageView
         android:id="@+id/score"
-        app:srcCompat="@drawable/score1"
         android:layout_width="200dp"
         android:layout_height="100dp"
+        android:layout_below="@id/gameover"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/gameover"/>
+        android:layout_marginTop="-124dp"
+        app:srcCompat="@drawable/score1" />
 
     <TextView
         android:id="@+id/scoreValue"
         android:text="0"
         android:textSize="80dp"
+        android:textColor="#FAB746"
         android:layout_width="500dp"
         android:layout_height="100dp"
         android:gravity="center"

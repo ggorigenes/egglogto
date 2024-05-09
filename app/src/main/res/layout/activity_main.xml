@@ -9,18 +9,8 @@
     tools:context=".GameTesting"
     android:background="@drawable/bg">
 
-    <ImageButton
-        android:id="@+id/start"
-        android:layout_width="175dp"
-        android:layout_height="167dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_centerVertical="true"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/start" />
-
     <ImageView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -28,9 +18,14 @@
 
     <ImageButton
         android:id="@+id/start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_alignBottom="@id/title"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" />
+        android:layout_marginBottom="-235dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/start" />
+
 
 </RelativeLayout>
