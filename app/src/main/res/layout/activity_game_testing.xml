@@ -6,8 +6,15 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameTesting"
-    android:background="@drawable/bg1">
+    tools:context=".GameTesting">
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg_vid"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"/>
+
 
     <ImageView
         android:id="@+id/egg"
@@ -32,8 +39,8 @@
 
     <ImageView
         android:id="@+id/basket"
-        android:layout_width="500dp"
-        android:layout_height="500dp"
+        android:layout_width="550dp"
+        android:layout_height="200dp"
         app:srcCompat="@drawable/basket"
         android:adjustViewBounds="true"
         android:layout_alignParentBottom="true"

@@ -25,7 +25,7 @@
         android:layout_marginBottom="-235dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/start" />
+        app:srcCompat="@drawable/start1" />
 
 
 </RelativeLayout>

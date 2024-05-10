@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,16 +15,26 @@ public class GameOver extends AppCompatActivity {
     ImageButton btnTest;
     private boolean isResume;
     TextView finalScore;
+    ImageView highScoreDrawable;
+    ImageView scoreDrawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_over);
 
-        finalScore = (TextView)findViewById(R.id.scoreValue);
-
+        highScoreDrawable = (ImageView) findViewById(R.id.highscore);
+        scoreDrawable = (ImageView) findViewById(R.id.score);
         Intent intent = getIntent();
-        finalScore.setText(intent.getStringExtra("score_pass"));
+
+        if (intent.getIntExtra("score_pass",0)>=1500)  {
+            scoreDrawable.setVisibility(View.GONE);
+        } else {
+            highScoreDrawable.setVisibility(View.GONE);
+        }
+
+        finalScore = (TextView)findViewById(R.id.scoreValue);
+        finalScore.setText(String.valueOf(intent.getIntExtra("score_pass",0)));
 
         ImageButton imageButton = findViewById(R.id.restart);
         imageButton.setOnClickListener(new View.OnClickListener() {

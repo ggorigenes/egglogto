@@ -6,6 +6,8 @@ import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -21,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +38,7 @@ public class GameTesting extends AppCompatActivity {
     // TODO: add life system
     private List<ImageView> mEggs = new ArrayList<>();
     private ImageView mGround;
+    private ImageView mBasket;
     private long mDuration = 1800L;
     private Random random;
     private RelativeLayout eggsContainer;
@@ -45,11 +49,17 @@ public class GameTesting extends AppCompatActivity {
     private int score =  0;
     private  int difficulty = 0;
     private int difficultyLimit = 100 ;
-    private  int speeder = 0;
+    private  int fallSpeeder = 0;
+    private  int spawnSpeeder =  0;
+
+
     private String  eggType;
     TextView scoreDraw;
     RelativeLayout lifeContainer;
     boolean isClick= false;
+    VideoView videoView;
+    int[] basketLocation = new int[2];
+    int[] eggLocation = new int[2];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +72,7 @@ public class GameTesting extends AppCompatActivity {
         lifeContainer = (RelativeLayout)findViewById(R.id.lifeContainer);
         mGround = findViewById(R.id.ground);
         eggsContainer = findViewById(R.id.eggsContainer);
+        mBasket = findViewById(R.id.basket);
 
         random = new Random();
         mHandler = new Handler();
@@ -92,18 +103,21 @@ public class GameTesting extends AppCompatActivity {
     }
 
     private void spawnEggInternal() {
-
+        isClick = false;
+        System.out.println(fallSpeeder);
+        System.out.println(difficulty);
         if (score >= difficultyLimit  &&  difficultyLimit < 1100) {
             difficulty =  difficulty  +  7;
             difficultyLimit = difficultyLimit + 200;
-            speeder  = speeder + 160;
+            fallSpeeder  = fallSpeeder + 160;
+            spawnSpeeder = spawnSpeeder + 80;
         }
 
         ImageView egg = new ImageView(this);
 
         int eggChance =  random.nextInt(99);
 
-        if (eggChance< 5) {
+        if (eggChance< 2) {
             egg.setImageResource(R.drawable.egg3);
             eggType  =  "gold";
         } else if (eggChance < 35 + difficulty) {
@@ -121,7 +135,8 @@ public class GameTesting extends AppCompatActivity {
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                 100,
                 100);
-        float startX = random.nextInt(getWindowManager().getDefaultDisplay().getWidth() - egg.getWidth());
+//        float startX = random.nextInt(getWindowManager().getDefaultDisplay().getWidth() - egg.getWidth());
+        float startX = random.nextInt((mBasket.getWidth()-150) - egg.getWidth());
         float startY = 100;
         params.leftMargin = (int) startX;
         params.topMargin = (int) startY;
@@ -140,17 +155,17 @@ public class GameTesting extends AppCompatActivity {
 
             }
         });
-
         animateFall(egg);
     }
 
     private void animateFall(final ImageView egg) {
-        float newY = mGround.getY() + mGround.getHeight() - egg.getHeight() / 2 + mGround.getTop() + 1000;
-
+        mBasket.getLocationOnScreen(basketLocation);
+//        float newY = mGround.getY() + mGround.getHeight() - egg.getHeight() / 2 + mGround.getTop() + 1000;
+        float newY = basketLocation[1];
         ViewPropertyAnimator animator = egg.animate()
                 .translationY(newY)
                 .setInterpolator(new AccelerateInterpolator())
-                .setDuration(mDuration - speeder)
+                .setDuration(mDuration - fallSpeeder)
                 .setListener(new Animator.AnimatorListener() {
                     @Override
                     public void onAnimationStart(Animator animation) {
@@ -177,7 +192,8 @@ public class GameTesting extends AppCompatActivity {
 
                     @Override
                     public void onAnimationEnd(@NonNull Animator animator) {
-                        if (egg.getY() > mGround.getY() + mGround.getHeight() - egg.getHeight() / 2) {
+                         egg.getLocationOnScreen(eggLocation);
+                        if ( eggLocation[1] >= basketLocation[1]) {
                             mEggs.remove(egg);
                             eggsContainer.removeView(egg);
 
@@ -195,8 +211,6 @@ public class GameTesting extends AppCompatActivity {
                                     lifeContainer.removeView(lifeContainer.getChildAt(life-1));
                                     life --;
                                 }
-                            } else {
-                                isClick = false;
                             }
                             scoreDraw.setText("Score:" + score);
                         }
@@ -208,11 +222,12 @@ public class GameTesting extends AppCompatActivity {
                                 if (life <= 0) {
                                     callGameOverPage();
                                 } else  {
-                                    spawnEggInternal();
+                                        spawnEggInternal();
+
                                 }
 
                             }
-                        }, 500);
+                        }, 500 - spawnSpeeder);
                     }
 
                     @Override
@@ -229,7 +244,7 @@ public class GameTesting extends AppCompatActivity {
     private void callGameOverPage () {
 
         Intent gameOverIntent = new Intent(GameTesting.this, GameOver.class);
-        gameOverIntent.putExtra("score_pass", String.valueOf(score));
+        gameOverIntent.putExtra("score_pass", score);
         startActivity(gameOverIntent);
 
     }
@@ -239,7 +254,8 @@ public class GameTesting extends AppCompatActivity {
         score =  0;
         difficulty = 0;
         difficultyLimit = 100 ;
-        speeder = 0;
+        fallSpeeder = 0;
+        spawnSpeeder = 0;
         eggType =  null;
     }
 }

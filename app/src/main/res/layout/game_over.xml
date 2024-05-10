@@ -11,18 +11,27 @@
 
     <ImageView
         android:id="@+id/gameover"
-        android:layout_width="match_parent"
-        android:layout_height="410dp"
+        android:layout_width="300dp"
+        android:layout_height="350dp"
+        android:layout_centerHorizontal="true"
         app:srcCompat="@drawable/gameover" />
+
 
     <ImageView
         android:id="@+id/score"
-        android:layout_width="200dp"
+        android:layout_width="400dp"
         android:layout_height="100dp"
         android:layout_below="@id/gameover"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="-124dp"
-        app:srcCompat="@drawable/score1" />
+        android:layout_marginTop="-70dp"
+        app:srcCompat="@drawable/score" />
+
+    <ImageView
+        android:id="@+id/highscore"
+        android:layout_width="500dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/gameover"
+        android:layout_marginTop="-134dp"
+        app:srcCompat="@drawable/highscore" />
 
     <TextView
         android:id="@+id/scoreValue"
@@ -49,14 +58,12 @@
         android:id="@+id/restart"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_alignRight="@id/exit"
+        android:layout_toRightOf="@id/exit"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="500dp"
-        android:layout_marginRight="-213dp"
-        android:layout_marginBottom="41dp"
+        android:layout_marginBottom="22dp"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
-        android:src="@drawable/restart1" />
+        android:src="@drawable/restart" />
 
 
 </RelativeLayout>
