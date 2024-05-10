@@ -35,7 +35,7 @@ import java.util.Random;
 public class GameTesting extends AppCompatActivity {
 
 
-    // TODO: add life system
+
     private List<ImageView> mEggs = new ArrayList<>();
     private ImageView mGround;
     private ImageView mBasket;
