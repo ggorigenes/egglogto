@@ -48,8 +48,8 @@ public class GameTesting extends AppCompatActivity {
     private int life =  2;
     private int score =  0;
     private  int difficulty = 0;
-    private int difficultyLimit = 100 ;
-    private  int fallSpeeder = 0;
+    private int difficultyLimit = 50 ;
+    private  int fallSpeeder = 150;
     private  int spawnSpeeder =  0;
 
 
@@ -109,7 +109,7 @@ public class GameTesting extends AppCompatActivity {
         if (score >= difficultyLimit  &&  difficultyLimit < 1100) {
             difficulty =  difficulty  +  7;
             difficultyLimit = difficultyLimit + 200;
-            fallSpeeder  = fallSpeeder + 160;
+            fallSpeeder  = fallSpeeder + 200;
             spawnSpeeder = spawnSpeeder + 80;
         }
 
@@ -117,7 +117,7 @@ public class GameTesting extends AppCompatActivity {
 
         int eggChance =  random.nextInt(99);
 
-        if (eggChance< 2) {
+        if (eggChance< 3) {
             egg.setImageResource(R.drawable.egg3);
             eggType  =  "gold";
         } else if (eggChance < 35 + difficulty) {
@@ -253,8 +253,8 @@ public class GameTesting extends AppCompatActivity {
         life =  2;
         score =  0;
         difficulty = 0;
-        difficultyLimit = 100 ;
-        fallSpeeder = 0;
+        difficultyLimit = 50 ;
+        fallSpeeder = 150;
         spawnSpeeder = 0;
         eggType =  null;
     }

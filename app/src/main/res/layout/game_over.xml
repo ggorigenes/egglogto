@@ -16,7 +16,6 @@
         android:layout_centerHorizontal="true"
         app:srcCompat="@drawable/gameover" />
 
-
     <ImageView
         android:id="@+id/score"
         android:layout_width="400dp"
@@ -36,8 +35,13 @@
     <TextView
         android:id="@+id/scoreValue"
         android:text="0"
-        android:textSize="80dp"
-        android:textColor="#FAB746"
+        android:fontFamily="@font/pixelify"
+        android:textSize="100dp"
+        android:textColor="#F3CA52"
+        android:shadowColor = "@color/black"
+        android:shadowDx = "5"
+        android:shadowDy = "5"
+        android:shadowRadius = "4"
         android:layout_width="500dp"
         android:layout_height="100dp"
         android:gravity="center"
