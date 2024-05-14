@@ -247,6 +247,7 @@ public class GameTesting extends AppCompatActivity {
                                         mp.start();
 
                                         if (egg.getTag().equals("normal") || egg.getTag().equals("gold")) {
+                                            spawnTextInternal(startX + 40,850,("-"+ "life"));
                                             life--;
                                             if(life==1) {
                                                 lifeContainer.getChildAt(1).setVisibility(View.INVISIBLE);
@@ -282,6 +283,7 @@ public class GameTesting extends AppCompatActivity {
 
                                     case "rotten":
                                         life--;
+                                        spawnTextInternal(startX + 40,850,("-"+ "life"));
                                         if(life==1) {
                                             lifeContainer.getChildAt(1).setVisibility(View.INVISIBLE);
 
@@ -413,6 +415,7 @@ public class GameTesting extends AppCompatActivity {
 
                                             case "minus_life":
                                                 life--;
+                                                spawnTextInternal(startX + 40,850,("-"+ "life"));
                                                 if(life==1) {
                                                     lifeContainer.getChildAt(1).setVisibility(View.INVISIBLE);
 
@@ -423,6 +426,7 @@ public class GameTesting extends AppCompatActivity {
                                                 break;
 
                                             case "add_life":
+                                                spawnTextInternal(startX + 40,850,("+"+ "life"));
                                                 if(life==1) {
                                                     life++;
                                                     if (life==2) {
@@ -676,6 +680,7 @@ public class GameTesting extends AppCompatActivity {
                                             chickenClickedDraw.setText(String.valueOf(stat.getChickenClicked()));
                                             if(life==1) {
                                                 life++;
+                                                spawnTextInternal(startX + 40,850,("-"+ "life"));
                                                 if (life==2) {
                                                     lifeContainer.getChildAt(1).setVisibility(View.VISIBLE);
                                                 }
