@@ -1,6 +1,7 @@
 package com.example.testing;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -17,17 +18,24 @@ public class GameOver extends AppCompatActivity {
     TextView finalScore;
     ImageView highScoreDrawable;
     ImageView scoreDrawable;
+    int highScore;
+    private boolean isMusicInGame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_over);
+        Intent intent = getIntent();
+
+        MediaPlayer mp = MediaPlayer.create(GameOver.this, R.raw.gameover);
+        isMusicInGame = getIntent().getBooleanExtra("musicGame", true);
+        if (isMusicInGame) mp.start();
 
         highScoreDrawable = (ImageView) findViewById(R.id.highscore);
         scoreDrawable = (ImageView) findViewById(R.id.score);
-        Intent intent = getIntent();
 
-        if (intent.getIntExtra("score_pass",0)>=1500)  {
+        highScore = getIntent().getIntExtra("highScore", 1500);
+        if (intent.getIntExtra("score_pass",0)>= highScore)  {
             scoreDrawable.setVisibility(View.GONE);
         } else {
             highScoreDrawable.setVisibility(View.GONE);
@@ -52,7 +60,11 @@ public class GameOver extends AppCompatActivity {
                 clickRestart();
 
                 Intent intent = new Intent(GameOver.this, GameTesting.class);
+                intent.putExtra("gameMode",getIntent().getStringExtra("gameMode"));
+                intent.putExtra("musicGame",isMusicInGame);
                 startActivity(intent);
+
+                mp.pause();
 
                 isResume = true;
                 restartButton.setImageResource(R.drawable.down2);
@@ -74,7 +86,10 @@ public class GameOver extends AppCompatActivity {
                 clickQuit();
 
                 Intent intent = new Intent(GameOver.this, MainActivity.class);
+                intent.putExtra("musicGame",isMusicInGame);
                 startActivity(intent);
+
+                mp.pause();
 
                 isResume = true;
                 quitButton.setImageResource(R.drawable.down1);

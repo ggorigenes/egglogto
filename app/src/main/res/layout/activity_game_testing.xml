@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     tools:context=".GameTesting">
 
+
     <pl.droidsonroids.gif.GifImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,11 +16,17 @@
         android:scaleType="fitXY"
         android:adjustViewBounds="true"/>
 
-
     <ImageView
         android:id="@+id/egg"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/textStat"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:fontFamily="@font/minecraft"
         android:layout_centerHorizontal="true" />
 
     <RelativeLayout
@@ -58,29 +65,75 @@
             android:id="@+id/life1"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:visibility="visible"
             app:srcCompat="@drawable/life" />
         <ImageView
             android:id="@+id/life2"
             android:layout_width="250dp"
             android:layout_height="100dp"
             android:layout_alignLeft="@id/life1"
-            app:srcCompat="@drawable/life"  />/>
+            android:visibility="visible"
+            app:srcCompat="@drawable/life"  />
+        />
 
     </RelativeLayout>
 
     <TextView
-        android:text="Highest Score: "
-        android:textSize="18dp"
-        android:layout_width="150dp"
-        android:layout_height="30dp"  />
+        android:text="Highest Score: 1500"
+        android:id="@+id/highscore"
+        android:textSize="23dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/minecraft"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:textAlignment="center"
+        android:layout_width="180dp"
+        android:layout_height="50dp"  />
 
     <TextView
         android:text="Score: 0"
         android:id="@+id/score"
-        android:textSize="18dp"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/minecraft"
+        android:layout_marginTop="5dp"
+        android:textAlignment="center"
         android:layout_width="150dp"
         android:layout_height="30dp"
         android:layout_alignRight="@id/eggsContainer"/>
+
+    <ImageView
+        android:id="@+id/cloud"
+        android:src="@drawable/cloud1"
+        android:layout_width="500dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true" />
+
+
+    <ImageView
+        android:id="@+id/chicken"
+        android:src="@drawable/chicken"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="25dp"
+        android:layout_alignLeft="@id/chickenCount"
+        android:layout_alignBottom="@id/basket"/>
+
+    <TextView
+        android:text="0"
+        android:id="@+id/chickenCount"
+        android:textSize="30dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/minecraft"
+        android:textAlignment="center"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="25dp"
+        android:layout_alignBottom="@id/basket"
+        android:layout_toRightOf="@id/lifeContainer"/>
+
 
 
 </RelativeLayout>

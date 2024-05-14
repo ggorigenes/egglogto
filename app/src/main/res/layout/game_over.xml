@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GameTesting"
-    android:background="@drawable/bg1">
+    android:background="@drawable/bg3">
 
     <ImageView
         android:id="@+id/gameover"
@@ -19,8 +19,9 @@
 
     <ImageView
         android:id="@+id/score"
-        android:layout_width="400dp"
+        android:layout_width="300dp"
         android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
         android:layout_below="@id/gameover"
         android:layout_marginTop="-70dp"
         app:srcCompat="@drawable/score" />
@@ -37,6 +38,7 @@
         android:id="@+id/scoreValue"
         android:text="0"
         android:textSize="80dp"
+        android:fontFamily="@font/minecraft"
         android:textColor="#FAB746"
         android:layout_width="500dp"
         android:layout_height="100dp"

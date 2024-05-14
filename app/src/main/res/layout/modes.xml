@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".GameTesting"
+    android:background="@drawable/bg">
+
+    <ImageView
+        android:id="@+id/sign"
+        android:src="@drawable/sign"
+        android:layout_width="300dp"
+        android:layout_height="500dp"
+        android:scaleType="fitXY"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="50dp" />
+
+    <ImageButton
+        android:id="@+id/cross"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/cross"
+        android:layout_marginTop="130dp"
+        android:layout_marginLeft="295dp"
+        android:background="@drawable/transparent_background"/>
+
+    <TextView
+        android:id="@+id/modes"
+        android:text="Difficulty Modes"
+        android:textSize="50dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/minecraft"
+        android:textAlignment="center"
+        android:layout_width="280dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/cross"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/easy"
+        android:text="Easy"
+        android:textSize="40dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/minecraft"
+        android:textAlignment="center"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/modes"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp" />
+
+
+    <TextView
+        android:id="@+id/medium"
+        android:text="Medium"
+        android:textSize="40dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/minecraft"
+        android:textAlignment="center"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/easy"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/hard"
+        android:text="Hard"
+        android:textSize="40dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/minecraft"
+        android:textAlignment="center"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/medium"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>
