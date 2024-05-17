@@ -78,6 +78,7 @@ public class GameTesting extends AppCompatActivity {
         isMusicInGame  = getIntent().getBooleanExtra("musicGame",true);
         MediaPlayer mp = MediaPlayer.create(GameTesting.this, R.raw.game);
         if (isMusicInGame) mp.start();
+        mp.setLooping(true);
 
 
         this.gameMode= intent.getStringExtra("gameMode");

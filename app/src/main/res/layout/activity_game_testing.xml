@@ -17,6 +17,19 @@
         android:adjustViewBounds="true"/>
 
     <ImageView
+        android:id="@+id/egg"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true" />
+
+    <RelativeLayout
+        android:id="@+id/eggsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:orientation="vertical" />
+
+    <ImageView
         android:id="@+id/cloud1"
         android:src="@drawable/cloud3"
         android:layout_width="500dp"
@@ -26,15 +39,9 @@
     <ImageView
         android:id="@+id/cloud"
         android:src="@drawable/cloud3"
-        android:layout_width="500dp"
+        android:layout_width="450dp"
         android:layout_height="180dp"
         android:layout_marginTop="40dp"
-        android:layout_centerHorizontal="true" />
-
-    <ImageView
-        android:id="@+id/egg"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -43,13 +50,6 @@
         android:layout_height="100dp"
         android:fontFamily="@font/minecraft"
         android:layout_centerHorizontal="true" />
-
-    <RelativeLayout
-        android:id="@+id/eggsContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:orientation="vertical" />
 
     <ImageView
         android:id="@+id/ground"

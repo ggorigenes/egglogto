@@ -44,6 +44,7 @@ public class GameOver extends AppCompatActivity {
         MediaPlayer mp = MediaPlayer.create(GameOver.this, R.raw.gameover);
         isMusicInGame = getIntent().getBooleanExtra("musicGame", true);
         if (isMusicInGame) mp.start();
+        mp.setLooping(true);
 
         highScoreDrawable = (ImageView) findViewById(R.id.highscore);
         scoreDrawable = (ImageView) findViewById(R.id.score);

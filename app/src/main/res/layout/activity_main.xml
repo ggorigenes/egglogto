@@ -45,14 +45,14 @@
         android:id="@+id/text"
         android:text="Guest"
         android:fontFamily="@font/minecraft"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:textColor="@color/black"
+        android:background="@null"
         android:layout_below="@id/welcome"
         android:gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_width="250dp"
         android:layout_height="50dp" />
-
 
     <ImageButton
         android:id="@+id/startUp"

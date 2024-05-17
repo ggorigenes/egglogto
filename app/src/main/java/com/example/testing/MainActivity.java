@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mp.start();
+                mp.setLooping(true);
                 isMusicInGame = true;
                 volumeUp.setVisibility(View.VISIBLE);
                 volumeDown.setVisibility(View.GONE);

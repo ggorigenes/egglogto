@@ -22,7 +22,7 @@ public class Stat {
 
         switch (gameMode) {
             case "Medium":
-                this.highScore = 1600;
+                this.highScore = 2000;
                 this.difficultyLimit = 100;
                 this.spawnSpeeder = 80;
                 this.spawnSpeederIncrease = 80;
@@ -34,7 +34,7 @@ public class Stat {
                 break;
 
             case "Hard":
-                this.highScore = 1700;
+                this.highScore = 2500;
                 this.difficultyLimit = 200;
                 this.spawnSpeeder = 160;
                 this.spawnSpeederIncrease = 80;
