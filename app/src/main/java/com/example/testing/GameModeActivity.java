@@ -54,7 +54,6 @@ public class GameModeActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     private void chooseGameMode(String gameMode)  {

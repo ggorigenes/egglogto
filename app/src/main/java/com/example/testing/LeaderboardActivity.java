@@ -61,7 +61,6 @@ public class LeaderboardActivity extends AppCompatActivity {
             topPlayerNameMargin.set(topPlayerNameMargin.get() + 70);
         });
 
-
     }
 
     private void addPlayerName(int y, String textInput)   {
@@ -79,7 +78,7 @@ public class LeaderboardActivity extends AppCompatActivity {
                 150);
 
         params.leftMargin = 30;
-        params.topMargin = y;
+        params.topMargin = y + 50;
         text.setLayoutParams(params);
         text.setY(y);
 
@@ -102,14 +101,13 @@ public class LeaderboardActivity extends AppCompatActivity {
                 400,
                 150);
 
-        params.topMargin = y;
+        params.topMargin = y + 50.35120.0;
         text.setLayoutParams(params);
         text.setY(y);
 
         playerScore.addView(text);
 
     }
-
 
     private void clickExitButton()  {
         Intent intent = new Intent(LeaderboardActivity.this, MainActivity.class);

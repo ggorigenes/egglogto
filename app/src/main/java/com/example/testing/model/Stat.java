@@ -27,7 +27,7 @@ public class Stat {
                 this.spawnSpeeder = 80;
                 this.spawnSpeederIncrease = 80;
                 this.fallSpeeder = 160;
-                this.fallSpeederIncrease = 80;
+                this.fallSpeederIncrease = 60;
                 this.doubleEggSpawnStart = 900;
                 this.normalEggScore = 20;
                 this.goldEggScore = 80;
@@ -39,7 +39,7 @@ public class Stat {
                 this.spawnSpeeder = 160;
                 this.spawnSpeederIncrease = 80;
                 this.fallSpeeder = 320;
-                this.fallSpeederIncrease = 100;
+                this.fallSpeederIncrease = 80;
                 this.doubleEggSpawnStart = 900;
                 this.normalEggScore = 30;
                 this.goldEggScore = 100;
@@ -51,7 +51,7 @@ public class Stat {
                 this.spawnSpeeder = 0;
                 this.spawnSpeederIncrease = 80;
                 this.fallSpeeder = 100;
-                this.fallSpeederIncrease = 60;
+                this.fallSpeederIncrease = 40;
                 this.doubleEggSpawnStart = 900;
                 this.normalEggScore = 10;
                 this.goldEggScore = 50;

@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
             isMusicInGame = getIntent().getBooleanExtra("musicGame",true);
             name = getIntent().getStringExtra("name");
 
-
         }
 
         leaderboardService.createLeaderboardFile(getApplicationContext());
@@ -68,9 +67,6 @@ public class MainActivity extends AppCompatActivity {
 
         currentGameMode.setText("Difficulty: " + gameMode);
 
-
-
-
         startButton = findViewById(R.id.startUp);
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
                 startGameTestingActivity();
             }
         });
-
 
         modeButton = findViewById(R.id.modesUp);
 
@@ -139,8 +134,6 @@ public class MainActivity extends AppCompatActivity {
 
         name = nameEditText.getText().toString();
 
-
-
     }
 
     public void hideKeyboard(View view) {
@@ -154,7 +147,6 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("musicGame",isMusicInGame);
         intent.putExtra("name",nameEditText.getText().toString());
         mp.stop();
-
 
         isResume = true;
         startButton.setImageResource(R.drawable.start_down);
@@ -180,8 +172,6 @@ public class MainActivity extends AppCompatActivity {
         mp.stop();
         startActivity(intent);
 
-
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -195,8 +185,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
    private void startLeaderboardActivity() {
         Intent intent = new Intent(MainActivity.this, LeaderboardActivity.class);
         intent.putExtra("gameMode", gameMode);
@@ -206,21 +194,17 @@ public class MainActivity extends AppCompatActivity {
         mp.stop();
         startActivity(intent);
 
-
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 isResume = false;
                 LeaderboardButton.setImageResource(R.drawable.leaderboard_up);
-
                 // Change to "up" drawable
             }
             // 2000 milliseconds = 2 seconds (adjust as needed)
         }, 2000);
 
     }
-
 
     @Override
     protected void onResume() {
