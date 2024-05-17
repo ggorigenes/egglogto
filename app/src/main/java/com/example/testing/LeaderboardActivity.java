@@ -101,7 +101,7 @@ public class LeaderboardActivity extends AppCompatActivity {
                 400,
                 150);
 
-        params.topMargin = y + 50.35120.0;
+        params.topMargin = y + 50;
         text.setLayoutParams(params);
         text.setY(y);
 
