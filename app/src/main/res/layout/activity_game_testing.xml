@@ -91,7 +91,7 @@
         android:layout_height="50dp"  />
 
     <TextView
-        android:text="Score: 0"
+        android:text="Score:0"
         android:id="@+id/score"
         android:textSize="25dp"
         android:textColor="@color/black"
@@ -104,7 +104,7 @@
 
     <ImageView
         android:id="@+id/cloud"
-        android:src="@drawable/cloud1"
+        android:src="@drawable/cloud2"
         android:layout_width="500dp"
         android:layout_height="200dp"
         android:layout_marginTop="30dp"

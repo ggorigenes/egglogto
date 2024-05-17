@@ -21,10 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GameModeActivity" />
-        <activity android:name=".GameTesting" />
-        <activity android:name=".GameOver" />
-        <activity android:name=".SettingActivity" />
+        <activity android:name=".GameModeActivity" android:noHistory = "true"/>
+        <activity android:name=".GameTesting" android:noHistory = "true"/>
+        <activity android:name=".GameOver" android:noHistory = "true"/>
+        <activity android:name=".LeaderboardActivity" android:noHistory = "true" />
     </application>
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 </manifest>

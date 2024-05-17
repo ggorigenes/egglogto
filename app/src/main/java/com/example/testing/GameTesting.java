@@ -3,6 +3,7 @@ package com.example.testing;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -27,6 +28,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
@@ -64,6 +67,8 @@ public class GameTesting extends AppCompatActivity {
     int[] eggLocation = new int[2];
     String gameMode;
 
+    OnBackPressedDispatcher onBackPressedDispatcher;
+
     boolean isMusicInGame;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,12 +95,22 @@ public class GameTesting extends AppCompatActivity {
 
         random = new Random();
         mHandler = new Handler();
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                System.out.println("backbutton  pressed");
+                return;
+            }
+
+        };
+        this.getOnBackPressedDispatcher().addCallback(this, callback);
         mSpawnEggRunnable = new Runnable() {
             @Override
             public void run() {
                 if (life <= 0) {
                     callGameOverPage();
-                    mp.pause();
+                    mp.stop();
                 }
                     System.out.println("mBasket.getHeight(): " + mBasket.getHeight());
                     System.out.println("mBasket.getHeight(): " + mBasket.getHeight());
@@ -132,6 +147,8 @@ public class GameTesting extends AppCompatActivity {
                 if (random.nextInt(99) < 14  && score>= 300) {
                     spawnChickenInternal(0);
                 }
+
+                changeStat();
                 mHandler.postDelayed(this,2500-spawnSpeeder);
             }
         };
@@ -158,15 +175,17 @@ public class GameTesting extends AppCompatActivity {
         mHandler.removeCallbacks(mSpawnEggRunnable);
     }
 
-    private int spawnEggInternal(int eggXScale) {
-        System.out.println(fallSpeeder);
-        System.out.println(difficulty);
-        if (score >= stat.getDifficultyLimit()  &&  stat.getDifficulty()  < 1100) {
+    private void changeStat() {
+        if (score >= stat.getDifficultyLimit()  &&  stat.getDifficulty() < 1100) {
             stat.setDifficulty(difficulty  +  7);
             stat.setDifficultyLimit(stat.getDifficultyLimit() + 200);
             stat.setFallSpeeder(stat.getFallSpeeder() + stat.getFallSpeederIncrease());
             stat.setSpawnSpeeder(stat.getSpawnSpeeder() + stat.getSpawnSpeederIncrease());
         }
+    }
+
+    private int spawnEggInternal(int eggXScale) {
+
 
         ImageView egg = new ImageView(this);
 
@@ -228,7 +247,7 @@ public class GameTesting extends AppCompatActivity {
         ViewPropertyAnimator animator = egg.animate()
                 .translationY(newY)
                 .setInterpolator(new AccelerateInterpolator())
-                .setDuration(mDuration - fallSpeeder)
+                .setDuration(mDuration - stat.getFallSpeeder())
                 .setListener(new Animator.AnimatorListener() {
                     @Override
                     public void onAnimationStart(Animator animation) {
@@ -243,7 +262,7 @@ public class GameTesting extends AppCompatActivity {
                                         eggsContainer.removeView(egg);
                                         eggStat.setClick(true);
 
-                                        MediaPlayer mp = MediaPlayer.create(GameTesting.this, R.raw.click);
+                                        MediaPlayer mp = MediaPlayer.create(GameTesting.this, R.raw.crack);
                                         mp.start();
 
                                         if (egg.getTag().equals("normal") || egg.getTag().equals("gold")) {
@@ -273,7 +292,7 @@ public class GameTesting extends AppCompatActivity {
                                 switch (egg.getTag().toString()) {
                                     case "gold":
                                         score = score + stat.getGoldEggScore();
-                                        spawnTextInternal(startX + 40,850,("+"+ stat.getNormalEggScore()));
+                                        spawnTextInternal(startX + 40,850,("+"+ stat.getGoldEggScore()));
                                         break;
 
                                     case "normal":
@@ -313,14 +332,7 @@ public class GameTesting extends AppCompatActivity {
     }
 
     private int spawnRandomEggInternal(int eggXScale) {
-        System.out.println(fallSpeeder);
-        System.out.println(difficulty);
-        if (score >= stat.getDifficultyLimit()  &&  stat.getDifficulty()  < 1100) {
-            stat.setDifficulty(difficulty  +  7);
-            stat.setDifficultyLimit(stat.getDifficultyLimit() + 200);
-            stat.setFallSpeeder(stat.getFallSpeeder() + stat.getFallSpeederIncrease());
-            stat.setSpawnSpeeder(stat.getSpawnSpeeder() + stat.getSpawnSpeederIncrease());
-        }
+
 
         ImageView egg = new ImageView(this);
 
@@ -383,7 +395,7 @@ public class GameTesting extends AppCompatActivity {
         ViewPropertyAnimator animator = egg.animate()
                 .translationY(newY)
                 .setInterpolator(new AccelerateInterpolator())
-                .setDuration(mDuration - fallSpeeder)
+                .setDuration(mDuration - stat.getFallSpeeder())
                 .setListener(new Animator.AnimatorListener() {
                     @Override
                     public void onAnimationStart(Animator animation) {
@@ -398,14 +410,15 @@ public class GameTesting extends AppCompatActivity {
                                         eggsContainer.removeView(egg);
                                         eggStat.setClick(true);
 
-                                        MediaPlayer mp = MediaPlayer.create(GameTesting.this, R.raw.click);
+                                        MediaPlayer mp = MediaPlayer.create(GameTesting.this, R.raw.crack);
                                         mp.start();
+
                                         egg.getLocationOnScreen(eggLocation);
                                         System.out.println("random.getTag().toString: " + egg.getTag().toString());
                                         switch (egg.getTag().toString()) {
                                             case "gold":
                                                 score = score + stat.getGoldEggScore();
-                                                spawnTextInternal(startX + 40,850,("+"+ stat.getNormalEggScore()));
+                                                spawnTextInternal(startX + 40,850,("+"+ stat.getGoldEggScore()));
                                                 break;
 
                                             case "normal":
@@ -435,6 +448,8 @@ public class GameTesting extends AppCompatActivity {
                                                 }
 
                                             }
+
+                                        scoreDraw.setText("Score:" + score);
                                     }
                                 });
                             }
@@ -449,8 +464,8 @@ public class GameTesting extends AppCompatActivity {
                             eggsContainer.removeView(egg);
 
                             if (!eggStat.isClick()) {
-                                score = score - 300;
-                                spawnTextInternal(startX + 40,850,("-"+ 300));
+                                score = score - stat.getRandomEggDropScore();
+                                spawnTextInternal(startX + 40,850,("-"+ stat.getRandomEggDropScore()));
                             }
                             scoreDraw.setText("Score:" + score);
                         }
@@ -459,6 +474,7 @@ public class GameTesting extends AppCompatActivity {
 
                     @Override
                     public void onAnimationCancel(@NonNull Animator animator) {
+
                     }
 
                     @Override
@@ -473,14 +489,7 @@ public class GameTesting extends AppCompatActivity {
     }
 
     private int spawnHatInternal(int eggXScale) {
-        System.out.println(fallSpeeder);
-        System.out.println(difficulty);
-        if (score >= stat.getDifficultyLimit()  &&  stat.getDifficulty() < 1100) {
-            stat.setDifficulty(difficulty  +  7);
-            stat.setDifficultyLimit(stat.getDifficultyLimit() + 200);
-            stat.setFallSpeeder(stat.getFallSpeeder() + stat.getFallSpeederIncrease());
-            stat.setSpawnSpeeder(stat.getSpawnSpeeder() + stat.getSpawnSpeederIncrease());
-        }
+
         ImageView egg = new ImageView(this);
         int eggChance =  random.nextInt(99);
 
@@ -544,7 +553,7 @@ public class GameTesting extends AppCompatActivity {
 
                                         eggStat.setClick(true);
 
-                                        MediaPlayer mp = MediaPlayer.create(GameTesting.this, R.raw.click);
+                                        MediaPlayer mp = MediaPlayer.create(GameTesting.this, R.raw.crack);
                                         mp.start();
 
                                         System.out.println("random.getTag().toString: " + egg.getTag().toString());
@@ -556,8 +565,8 @@ public class GameTesting extends AppCompatActivity {
                                         if (eggStat.getClickIsClickCount()>=2) {
                                             mEggs.remove(egg);
                                             eggsContainer.removeView(egg);
-                                            score = score + 100;
-                                            spawnTextInternal(startX + 40,850,("+"+ 100));
+                                            score = score + stat.getHatScore();
+                                            spawnTextInternal(startX + 40,850,("+"+ stat.getHatScore()));
                                             scoreDraw.setText("Score:" + score);
                                         }
                                         eggStat.setClick(false);
@@ -576,8 +585,8 @@ public class GameTesting extends AppCompatActivity {
                             eggsContainer.removeView(egg);
 
                             if (eggStat.getClickIsClickCount()<2) {
-                                score = score - 100;
-                                spawnTextInternal(startX + 40,850,("-"+100));
+                                score = score - stat.getHatScore();
+                                spawnTextInternal(startX + 40,850,("-"+stat.getHatScore()));
                             }
                             scoreDraw.setText("Score:" + score);
                         }
@@ -593,23 +602,14 @@ public class GameTesting extends AppCompatActivity {
                     }
                 });
 
-
         animateFall(animator);
         System.out.println("startX: "  +startX);
         return  (int) startX;
     }
 
     private int spawnChickenInternal(int eggXScale) {
-        System.out.println(fallSpeeder);
-        System.out.println(difficulty);
-        if (score >= stat.getDifficultyLimit()  &&  stat.getDifficulty() < 1100) {
-            stat.setDifficulty(difficulty  +  7);
-            stat.setDifficultyLimit(stat.getDifficultyLimit() + 200);
-            stat.setFallSpeeder(stat.getFallSpeeder() + stat.getFallSpeederIncrease());
-            stat.setSpawnSpeeder(stat.getSpawnSpeeder() + stat.getSpawnSpeederIncrease());
-        }
+
         ImageView egg = new ImageView(this);
-        int eggChance =  random.nextInt(99);
 
         egg.setImageResource(R.drawable.chicken);
 
@@ -645,7 +645,6 @@ public class GameTesting extends AppCompatActivity {
         egg.setLayoutParams(params);
         egg.setY(startY);
 
-
         mEggs.add(egg);
 
         eggsContainer.addView(egg, params);
@@ -664,7 +663,7 @@ public class GameTesting extends AppCompatActivity {
 
                                         eggStat.setClick(true);
 
-                                        MediaPlayer mp = MediaPlayer.create(GameTesting.this, R.raw.click);
+                                        MediaPlayer mp = MediaPlayer.create(GameTesting.this, R.raw.crack);
                                         mp.start();
 
                                         mEggs.remove(egg);
@@ -675,17 +674,16 @@ public class GameTesting extends AppCompatActivity {
                                         System.out.println("random.getTag().toString: " + egg.getTag().toString());
                                         System.out.println("life: " + life);
 
-                                        if (stat.getChickenClicked()>=3) {
+                                        if (stat.getChickenClicked()>=stat.getChickenToLife()) {
                                             stat.setChickenClicked(0);
                                             chickenClickedDraw.setText(String.valueOf(stat.getChickenClicked()));
                                             if(life==1) {
                                                 life++;
-                                                spawnTextInternal(startX + 40,850,("-"+ "life"));
+                                                spawnTextInternal(startX + 40,850,("+"+ "life"));
                                                 if (life==2) {
                                                     lifeContainer.getChildAt(1).setVisibility(View.VISIBLE);
                                                 }
                                             }
-
                                         }
                                     }
                                 });
@@ -708,7 +706,6 @@ public class GameTesting extends AppCompatActivity {
                     }
                 });
 
-
         animateFall(animator);
         System.out.println("startX: "  +startX);
         return  (int) startX;
@@ -730,7 +727,6 @@ public class GameTesting extends AppCompatActivity {
                 80,
                 80);
 
-
         params.leftMargin = x;
         params.topMargin = y;
         text.setLayoutParams(params);
@@ -747,7 +743,6 @@ public class GameTesting extends AppCompatActivity {
                     @Override
                     public void onAnimationStart(Animator animation) {
                         text.setVisibility(View.VISIBLE);
-
                     }
 
                     @Override
@@ -763,29 +758,22 @@ public class GameTesting extends AppCompatActivity {
                     public void onAnimationRepeat(@NonNull Animator animator) {
                     }
                 });
-
         animateFall(animator);
-
     }
-
-
-
 
     private void animateFall(ViewPropertyAnimator animator) {
         animator.start();
     }
 
-
     private void callGameOverPage () {
-
         Intent gameOverIntent = new Intent(GameTesting.this, GameOver.class);
         gameOverIntent.putExtra("score_pass", score);
         gameOverIntent.putExtra("highScore", stat.getHighScore());
         gameOverIntent.putExtra("gameMode",this.gameMode);
         gameOverIntent.putExtra("musicGame",isMusicInGame);
+        gameOverIntent.putExtra("name",getIntent().getStringExtra("name"));
         startActivity(gameOverIntent);
         finish();
-
     }
 
     private void resetStat(String gameMode) {
@@ -794,8 +782,5 @@ public class GameTesting extends AppCompatActivity {
         this.stat = stat;
         life =  2;
         score =  0;
-
-
     }
-
 }

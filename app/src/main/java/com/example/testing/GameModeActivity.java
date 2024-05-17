@@ -62,6 +62,7 @@ public class GameModeActivity extends AppCompatActivity {
         System.out.println("chooseGameMode: " + gameMode);
         Intent intent = new Intent(GameModeActivity.this, MainActivity.class);
         intent.putExtra("gameMode", gameMode);
+        intent.putExtra("name", getIntent().getStringExtra("name"));
         startActivity(intent);
     }
 

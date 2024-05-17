@@ -14,6 +14,9 @@ public class Stat {
     private int normalEggScore;
     private int goldEggScore;
     private int chickenClicked = 0;
+    private int chickenToLife = 3;
+    private int randomEggDropScore = 150;
+    private int hatScore = 100;
 
     public Stat(String gameMode) {
 
@@ -24,7 +27,7 @@ public class Stat {
                 this.spawnSpeeder = 80;
                 this.spawnSpeederIncrease = 80;
                 this.fallSpeeder = 160;
-                this.fallSpeederIncrease = 160;
+                this.fallSpeederIncrease = 80;
                 this.doubleEggSpawnStart = 900;
                 this.normalEggScore = 20;
                 this.goldEggScore = 80;
@@ -36,7 +39,7 @@ public class Stat {
                 this.spawnSpeeder = 160;
                 this.spawnSpeederIncrease = 80;
                 this.fallSpeeder = 320;
-                this.fallSpeederIncrease = 160;
+                this.fallSpeederIncrease = 100;
                 this.doubleEggSpawnStart = 900;
                 this.normalEggScore = 30;
                 this.goldEggScore = 100;
@@ -47,8 +50,8 @@ public class Stat {
                 this.difficultyLimit = 200;
                 this.spawnSpeeder = 0;
                 this.spawnSpeederIncrease = 80;
-                this.fallSpeeder = 50;
-                this.fallSpeederIncrease = 160;
+                this.fallSpeeder = 100;
+                this.fallSpeederIncrease = 60;
                 this.doubleEggSpawnStart = 900;
                 this.normalEggScore = 10;
                 this.goldEggScore = 50;
@@ -151,5 +154,29 @@ public class Stat {
 
     public void setChickenClicked(int chickenClicked) {
         this.chickenClicked = chickenClicked;
+    }
+
+    public int getChickenToLife() {
+        return chickenToLife;
+    }
+
+    public void setChickenToLife(int chickenToLife) {
+        this.chickenToLife = chickenToLife;
+    }
+
+    public int getRandomEggDropScore() {
+        return randomEggDropScore;
+    }
+
+    public void setRandomEggDropScore(int randomEggDropScore) {
+        this.randomEggDropScore = randomEggDropScore;
+    }
+
+    public int getHatScore() {
+        return hatScore;
+    }
+
+    public void setHatScore(int hatScore) {
+        this.hatScore = hatScore;
     }
 }
