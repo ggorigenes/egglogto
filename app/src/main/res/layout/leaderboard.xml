@@ -18,12 +18,22 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true" />
 
+    <ImageButton
+        android:id="@+id/cross"
+        android:src="@drawable/cross"
+        android:scaleType="centerCrop"
+        android:layout_toRightOf="@id/leaderboard_text"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/transparent_background"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
+
     <ImageView
         android:id="@+id/leaderboard_text"
         android:src="@drawable/leaderboard_text"
         android:gravity="center"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="70dp"
         android:layout_width="350dp"
         android:layout_height="50dp"  />
 

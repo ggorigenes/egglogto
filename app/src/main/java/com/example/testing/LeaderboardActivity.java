@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -30,6 +31,7 @@ public class LeaderboardActivity extends AppCompatActivity {
 
     RelativeLayout playerNames;
     RelativeLayout playerScore;
+
 
     LeaderboardService leaderboardService;
 
@@ -59,6 +61,15 @@ public class LeaderboardActivity extends AppCompatActivity {
             addPlayerName(topPlayerNameMargin.get(),n.getName());
             addPlayerScore(topPlayerNameMargin.get(),String.valueOf(n.getScore()));
             topPlayerNameMargin.set(topPlayerNameMargin.get() + 70);
+        });
+
+        ImageButton backButton = findViewById(R.id.cross);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickExitButton();
+            }
         });
 
     }
