@@ -22,19 +22,19 @@ public class Stat {
 
         switch (gameMode) {
             case "Medium":
-                this.highScore = 2000;
+                this.highScore = 2500;
                 this.difficultyLimit = 100;
                 this.spawnSpeeder = 80;
                 this.spawnSpeederIncrease = 80;
-                this.fallSpeeder = 160;
-                this.fallSpeederIncrease = 60;
+                this.fallSpeeder = 180;
+                this.fallSpeederIncrease = 80;
                 this.doubleEggSpawnStart = 900;
                 this.normalEggScore = 20;
                 this.goldEggScore = 80;
                 break;
 
             case "Hard":
-                this.highScore = 2500;
+                this.highScore = 3000;
                 this.difficultyLimit = 200;
                 this.spawnSpeeder = 160;
                 this.spawnSpeederIncrease = 80;
@@ -46,12 +46,12 @@ public class Stat {
                 break;
 
             default:
-                this.highScore = 1500;
+                this.highScore = 2000;
                 this.difficultyLimit = 200;
                 this.spawnSpeeder = 0;
                 this.spawnSpeederIncrease = 80;
                 this.fallSpeeder = 100;
-                this.fallSpeederIncrease = 40;
+                this.fallSpeederIncrease = 80;
                 this.doubleEggSpawnStart = 900;
                 this.normalEggScore = 10;
                 this.goldEggScore = 50;

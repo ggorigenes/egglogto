@@ -86,10 +86,10 @@ public class LeaderboardActivity extends AppCompatActivity {
 
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                 400,
-                150);
+                140);
 
         params.leftMargin = 30;
-        params.topMargin = y + 30;
+        params.topMargin = y;
         text.setLayoutParams(params);
         text.setY(y);
 
@@ -110,9 +110,9 @@ public class LeaderboardActivity extends AppCompatActivity {
 
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                 400,
-                150);
+                130);
 
-        params.topMargin = y + 30;
+        params.topMargin = y;
         text.setLayoutParams(params);
         text.setY(y);
 

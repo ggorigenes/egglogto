@@ -344,9 +344,9 @@ public class GameTesting extends AppCompatActivity {
 
         if (eggChance < 24) {
             eggType  =  "add_life";
-        } else if (eggChance < 39) {
+        } else if (eggChance < 49) {
             eggType  =  "minus_life";
-        } else if (eggChance < 54) {
+        } else if (eggChance < 64) {
             eggType  =  "gold";
         } else {
             eggType  =  "normal";
